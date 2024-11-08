@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply h-screen w-screen;
+}
+
+.page {
+  @apply flex flex-col h-full;
+}
