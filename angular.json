@@ -119,6 +119,9 @@
             ],
             "scripts": []
           }
+        },
+        "desktop": {
+          "builder": "ngx-electronify:electron"
         }
       }
     }
