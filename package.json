@@ -6,7 +6,8 @@
     "start": "ng run association-management:desktop",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "rebuild": "electron-rebuild -f -w better-sqlite3",
+    "create:migration": "touch src/app/migrations/$(date -u +%Y-%m-%dT%H%M%SZ).migration.ts"
   },
   "private": true,
   "dependencies": {
@@ -16,13 +17,14 @@
     "@angular/compiler": "^18.2.0",
     "@angular/core": "^18.2.0",
     "@angular/forms": "^18.2.0",
-    "@angular/material": "^18.2.12",
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
     "better-sqlite3": "^11.5.0",
     "kysely": "^0.27.4",
     "ngx-electronyzer": "^18.1.0",
+    "primeicons": "^7.0.0",
+    "primeng": "^17.18.11",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
