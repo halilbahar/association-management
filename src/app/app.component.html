@@ -1,25 +1,37 @@
-<mat-sidenav-container class="flex-1">
-  <mat-sidenav mode="side" opened="true" class="custom-sidenav">
-    <div class="p-3">
-      <mat-nav-list>
-        <a mat-list-item href="#">
-          <mat-icon>home</mat-icon>
-          <span>Home</span>
-        </a>
-        <a mat-list-item href="#">
-          <mat-icon>info</mat-icon>
-          <span>About</span>
-        </a>
-        <a mat-list-item href="#">
-          <mat-icon>build</mat-icon>
-          <span>Services</span>
-        </a>
-        <a mat-list-item href="#">
-          <mat-icon>contact_mail</mat-icon>
-          <span>Contact</span>
-        </a>
-      </mat-nav-list>
+<div class="flex h-screen">
+  <!-- Sidebar -->
+  <aside class="w-52 bg-gray-800 text-white flex flex-col">
+    <!-- Logo/App Name -->
+    <div class="h-16 flex items-center justify-center text-xl font-bold bg-gray-900">
+      Associate tool
     </div>
-  </mat-sidenav>
-  <mat-sidenav-content>Main</mat-sidenav-content>
-</mat-sidenav-container>
+    <!-- Navigation Links -->
+    <nav class="flex-1 p-4 space-y-2">
+      @for (item of menuItems; track $index) {
+        <a
+          class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-700"
+          [routerLink]="item.route"
+          [routerLinkActive]="['font-bold']"
+        >
+          <i class="pi text-lg" [ngClass]="item.icon"></i>
+          <span>{{ item.label }}</span>
+        </a>
+      }
+    </nav>
+  </aside>
+
+  <!-- Main Content Area -->
+  <div class="flex-1 flex flex-col">
+    <!-- Toolbar -->
+    <header class="h-16 bg-gray-100 shadow-md flex items-center px-4">
+      <div class="text-2xl font-semibold text-gray-700">
+        Mitgliederverwaltung
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="flex-1 p-6 overflow-y-auto">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

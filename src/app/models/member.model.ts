@@ -30,6 +30,8 @@ export interface MemberDataTable {
     phoneNumber: string;
     description: string;
   }[]>;
+  // CreatedAt
+  // UpdatedAt
 }
 
 export type MemberData = Selectable<MemberDataTable>;

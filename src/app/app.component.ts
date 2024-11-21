@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
-import { MatListItem, MatNavList } from '@angular/material/list';
-import { MatIcon } from '@angular/material/icon';
+import { Component, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { NgClass } from '@angular/common';
+import { DatabaseService } from './services/database.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatSidenavContainer, MatSidenavContent, MatSidenav, MatNavList, MatListItem, MatIcon],
+  imports: [RouterOutlet, RouterLink, NgClass, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   host: {
@@ -15,4 +14,13 @@ import { MatIcon } from '@angular/material/icon';
   }
 })
 export class AppComponent {
+  t = inject(DatabaseService);
+
+  menuItems = [
+    {
+      icon: 'pi-users',
+      label: 'Members',
+      route: '/members'
+    }
+  ];
 }
