@@ -8,21 +8,20 @@ import migrations from '../migrations';
   providedIn: 'root'
 })
 export class DatabaseService {
-  private readonly db: Kysely<Database>;
+  readonly kysely: Kysely<Database>;
 
   constructor() {
     const SQLite = require('better-sqlite3');
     const dialect = new SqliteDialect({
-      database: new SQLite(':memory:')
+      // database: new SQLite(':memory:', { verbose: console.log })
+      database: new SQLite('/home/halil/projects/association-management/db')
     });
-    this.db = new Kysely<Database>({
-      dialect
-    });
+    this.kysely = new Kysely<Database>({ dialect });
   }
 
   async migrate(): Promise<void> {
     const migrator = new Migrator({
-      db: this.db,
+      db: this.kysely,
       provider: new ArrayMigrationsProvider(migrations)
     });
 

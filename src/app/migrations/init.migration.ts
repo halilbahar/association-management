@@ -2,14 +2,20 @@ import { Kysely, sql } from 'kysely';
 
 export async function up(db: Kysely<any>): Promise<void> {
   await db.schema
-    .createTable('MemberTable')
-    .addColumn('id', 'serial', (col) => col.primaryKey())
+    .createTable('member')
+    .addColumn('id', 'integer', (col) => col.primaryKey())
+    .addColumn('createdAt', 'date',
+      (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`)
+    )
+    .addColumn('updatedAt', 'date',
+      (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`)
+    )
     .execute();
 
   await db.schema
-    .createTable('MemberDataTable')
+    .createTable('memberData')
     .addColumn('memberId', 'integer', (col) =>
-      col.references('MemberTable.id').onDelete('cascade')
+      col.references('member.id').onDelete('cascade')
     )
     .addColumn('firstName', 'varchar', (col) => col.notNull())
     .addColumn('lastName', 'varchar', (col) => col.notNull())
@@ -21,10 +27,16 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn('emails', 'json', (col) => col.notNull())
     .addColumn('addresses', 'json', (col) => col.notNull())
     .addColumn('phoneNumbers', 'json', (col) => col.notNull())
+    .addColumn('createdAt', 'date',
+      (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`)
+    )
+    .addColumn('updatedAt', 'date',
+      (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`)
+    )
     .execute();
 }
 
 export async function down(db: Kysely<any>): Promise<void> {
-  await db.schema.dropTable('MemberDataTable').execute();
-  await db.schema.dropTable('MemberTable').execute();
+  await db.schema.dropTable('memberData').execute();
+  await db.schema.dropTable('member').execute();
 }

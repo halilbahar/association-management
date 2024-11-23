@@ -1,7 +1,9 @@
-import { Generated, Insertable, JSONColumnType, Selectable, Updateable } from 'kysely';
+import { ColumnType, Generated, Insertable, JSONColumnType, Selectable, Updateable } from 'kysely';
 
 export interface MemberTable {
   id: Generated<number>;
+  createdAt: ColumnType<number, never, never>;
+  updatedAt: ColumnType<number, never, number>;
 }
 
 export type Member = Selectable<MemberTable>;
@@ -12,8 +14,8 @@ export interface MemberDataTable {
   memberId: number;
   firstName: string;
   lastName: string;
-  birthDate: Date;
-  joinedDate: Date;
+  birthDate: number;
+  joinedDate: number;
   gender: 'female' | 'male';
   nationality: string;
   notes: string;
@@ -30,8 +32,8 @@ export interface MemberDataTable {
     phoneNumber: string;
     description: string;
   }[]>;
-  // CreatedAt
-  // UpdatedAt
+  createdAt: ColumnType<number, never, never>;
+  updatedAt: ColumnType<number, never, number>;
 }
 
 export type MemberData = Selectable<MemberDataTable>;

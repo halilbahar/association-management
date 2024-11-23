@@ -1,0 +1,93 @@
+<h1 class="text-3xl">Create Member</h1>
+<ng-container [formGroup]="form">
+  <p-floatlabel variant="in">
+    <input pInputText id="firstName" autocomplete="off" formControlName="firstName" />
+    <label for="firstName">First Name</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <input pInputText id="lastName" autocomplete="off" formControlName="lastName" />
+    <label for="lastName">Last Name</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <p-date-picker id="birthDate" formControlName="birthDate" />
+    <label for="birthDate">Birth Date</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <p-date-picker id="joinedDate" formControlName="joinedDate" />
+    <label for="joinedDate">Joined Date</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <p-select [options]="[{label: 'Female', value: 'female'}, {label: 'Male', value: 'male'}]" id="gender"
+              formControlName="gender" />
+    <label for="gender">Gender</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <input pInputText id="nationality" autocomplete="off" formControlName="nationality" />
+    <label for="nationality">Nationality</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="in">
+    <textarea pTextarea id="notes" autocomplete="off" formControlName="notes"></textarea>
+    <label for="notes">Notes</label>
+  </p-floatlabel>
+
+  <div>
+    @for (email of emails.controls; let i = $index; track i) {
+      <ng-container [formGroup]="email">
+        <p-floatlabel variant="in">
+          <input pInputText id="email-{{i}}" autocomplete="off" formControlName="email" />
+          <label for="email-{{i}}">Email</label>
+        </p-floatlabel>
+        <p-floatlabel variant="in">
+          <input pInputText id="description-{{i}}" autocomplete="off" formControlName="description" />
+          <label for="description-{{i}}">Email Description</label>
+        </p-floatlabel>
+      </ng-container>
+    }
+    <button type="button" (click)="this.addEmail()">Add Email</button>
+  </div>
+
+  <div>
+    @for (address of this.addresses.controls; let i = $index; track i) {
+      <ng-container [formGroup]="address">
+        <p-floatlabel variant="in">
+          <input pInputText id="street-{{i}}" autocomplete="off" formControlName="street" />
+          <label for="street-{{i}}">Street</label>
+        </p-floatlabel>
+        <p-floatlabel variant="in">
+          <input pInputText id="city-{{i}}" autocomplete="off" formControlName="city" />
+          <label for="city-{{i}}">City</label>
+        </p-floatlabel>
+        <p-floatlabel variant="in">
+          <input pInputText id="zip-{{i}}" autocomplete="off" formControlName="zip" />
+          <label for="zip-{{i}}">Zip Code</label>
+        </p-floatlabel>
+      </ng-container>
+    }
+    <button type="button" (click)="this.addAddress()">Add Address</button>
+  </div>
+
+  <div>
+    @for (phoneNumber of this.phoneNumbers.controls; let i = $index; track i) {
+      <ng-container [formGroup]="phoneNumber">
+        <p-floatlabel variant="in">
+          <input pInputText id="phoneNumber-{{i}}" autocomplete="off" formControlName="phoneNumber" />
+          <label for="phoneNumber-{{i}}">Phone Number</label>
+        </p-floatlabel>
+        <p-floatlabel variant="in">
+          <input pInputText id="description-{{i}}" autocomplete="off" formControlName="description" />
+          <label for="description-{{i}}">Phone Description</label>
+        </p-floatlabel>
+      </ng-container>
+
+    }
+    <button type="button" (click)="this.addPhoneNumber()">Add Phone Number</button>
+  </div>
+
+  <p-button label="Submit" (click)="this.submit()" />
+</ng-container>
