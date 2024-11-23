@@ -13,6 +13,8 @@ body {
   @apply h-screen w-screen;
 }
 
+@import "primeicons/primeicons.css";
+
 .page {
   @apply flex flex-col h-full;
 }
