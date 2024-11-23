@@ -1,0 +1,57 @@
+<p-table [value]="this.member()" class="p-datatable p-component">
+  <ng-template pTemplate="body" let-member>
+    <tr>
+      <td>ID</td>
+      <td>{{ member.memberId }}</td>
+    </tr>
+    <tr>
+      <td>firstName</td>
+      <td>{{ member.firstName }}</td>
+    </tr>
+    <tr>
+      <td>lastName</td>
+      <td>{{ member.lastName }}</td>
+    </tr>
+
+    <tr>
+      <td>birthDate</td>
+      <td>{{ member.birthDate * 1000 |date: 'dd.MM.yy' }}</td>
+    </tr>
+    <tr>
+      <td>joinedDate</td>
+      <td>{{ member.joinedDate * 1000 |date:'dd.MM.yy' }}</td>
+    </tr>
+    <tr>
+      <td>gender</td>
+      <td>{{ member.gender }}</td>
+    </tr>
+    <tr>
+      <td>nationality</td>
+      <td>{{ member.nationality }}</td>
+    </tr>
+    <tr>
+      <td>emails</td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>addresses</td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>phoneNumbers</td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>notes</td>
+      <td>{{ member.notes }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<div class="mt-2">
+  <p-button label="Back" [routerLink]="['/', 'members']" />
+</div>
+

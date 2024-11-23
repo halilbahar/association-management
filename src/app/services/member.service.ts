@@ -10,6 +10,11 @@ export class MemberService {
   private databaseService = inject(DatabaseService);
   private db = this.databaseService.kysely;
 
+  /**
+   * Retrieves the total count of members from the database.
+   *
+   * @return {Promise<number>} A promise that resolves to the total number of members.
+   */
   async getTotalMemberCount(): Promise<number> {
     const result = await this.db
       .selectFrom('member')
@@ -19,6 +24,13 @@ export class MemberService {
     return result.count;
   }
 
+  /**
+   * Retrieves a paginated list of members along with their latest data.
+   *
+   * @param {number} pageSize - The number of members to retrieve per page.
+   * @param {number} offset - The number of members to skip before starting to collect the result set.
+   * @return {Promise<Array<{memberId: number, memberData: MemberData}>>} A promise that resolves to an array of objects, each containing a member's ID and their latest data.
+   */
   async getMembersWithLatestData(pageSize: number, offset: number): Promise<{
     memberId: number,
     memberData: MemberData
@@ -54,6 +66,12 @@ export class MemberService {
     return Array.from(uniqueMembers, ([memberId, memberData]) => ({ memberId, memberData }));
   }
 
+  /**
+   * Creates a new member and inserts the corresponding member data into the database.
+   *
+   * @param {NewMemberData} memberData - The data associated with the new member.
+   * @return {Promise<InsertResult>} A promise that resolves to the result of the insert operation.
+   */
   async createMember(memberData: NewMemberData): Promise<InsertResult> {
     return this.db.transaction().execute(async trx => {
       const memberId = await trx
@@ -69,5 +87,24 @@ export class MemberService {
         memberId
       }).executeTakeFirst();
     });
+  }
+
+  /**
+   * Retrieves a member's data from the database using their unique member ID.
+   *
+   * @param {number} memberId - The unique identifier of the member.
+   * @return {Promise<MemberData | undefined>} - A promise that resolves to the member's data if found, or undefined if no record is found.
+   */
+  async getMemberById(memberId: number): Promise<MemberData | undefined> {
+    let memberData = await this.db
+      .selectFrom('memberData')
+      .selectAll()
+      .where('memberId', '=', memberId)
+      .orderBy('createdAt', 'desc')
+      .limit(1)
+      .executeTakeFirst();
+
+    // TODO: write global serializer for stringified json
+    return memberData;
   }
 }

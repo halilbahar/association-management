@@ -24,6 +24,7 @@
       <th>ID</th>
       <th>First Name</th>
       <th>Last Name</th>
+      <th></th>
     </tr>
   </ng-template>
 
@@ -32,6 +33,9 @@
       <td>{{ memberData.memberId }}</td>
       <td>{{ memberData.firstName }}</td>
       <td>{{ memberData.lastName }}</td>
+      <td>
+        <p-button icon="pi pi-eye" severity="info" [routerLink]="['/', 'members', 'detail', memberData.memberId]" />
+      </td>
     </tr>
   </ng-template>
 
