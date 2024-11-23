@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Database } from '~models/database-types';
 import { Kysely, Migration, MigrationProvider, Migrator, SqliteDialect } from 'kysely';
-import d from '../migrations';
 import migrations from '../migrations';
 
 @Injectable({
