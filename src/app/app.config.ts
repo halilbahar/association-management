@@ -7,6 +7,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { DatabaseService } from '~services/database.service';
+import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,6 +31,15 @@ export const appConfig: ApplicationConfig = {
       multi: true,
       deps: [DatabaseService]
     },
-    { provide: LOCALE_ID, useValue: 'de-AT' }
+    { provide: LOCALE_ID, useValue: 'de-AT' },
+    provideHttpClient(),
+    provideTranslateService({
+      defaultLanguage: 'de',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, './i18n/', '.json'),
+        deps: [HttpClient]
+      }
+    })
   ]
 };

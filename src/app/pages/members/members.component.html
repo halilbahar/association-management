@@ -1,6 +1,6 @@
 <p-toolbar>
   <div class="p-toolbar-group-start">
-    <p-button label="new" routerLink="/members/new" />
+    <p-button label="{{ 'pages.members.createNewMember' | translate }}" routerLink="/members/new" />
   </div>
   <div class="p-toolbar-group-center">
   </div>
@@ -21,9 +21,9 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th>ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
+      <th>{{ 'model.id' | translate }}</th>
+      <th>{{ 'model.memberData.firstName' | translate }}</th>
+      <th>{{ 'model.memberData.surname' | translate }}</th>
       <th></th>
     </tr>
   </ng-template>
@@ -38,5 +38,4 @@
       </td>
     </tr>
   </ng-template>
-
 </p-table>

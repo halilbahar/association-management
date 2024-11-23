@@ -5,11 +5,12 @@ import { Toolbar } from 'primeng/toolbar';
 import { Button } from 'primeng/button';
 import { RouterLink } from '@angular/router';
 import { MemberService } from '~services/member.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-members',
   standalone: true,
-  imports: [Toolbar, Button, RouterLink, TableModule],
+  imports: [Toolbar, Button, RouterLink, TableModule, TranslatePipe],
   templateUrl: './members.component.html',
   styleUrl: './members.component.scss'
 })

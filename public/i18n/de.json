@@ -1,0 +1,25 @@
+{
+  "pages": {
+    "members": {
+      "createNewMember": "Neues Mitglied hinzufügen"
+    }
+  },
+  "model": {
+    "id": "ID",
+    "memberData": {
+      "firstName": "Vorname",
+      "surname": "Nachname",
+      "birthDate": "Geburtstag",
+      "joinedDate": "Datum des Beitritts",
+      "gender": "Geschlecht",
+      "nationality": "Nationalität",
+      "emails": "E-Mail Addressen",
+      "addresses": "Adressen",
+      "phoneNumbers": "Telefonnummern",
+      "notes": "Notizen"
+    }
+  },
+  "etc": {
+    "back": "Zurück"
+  }
+}
