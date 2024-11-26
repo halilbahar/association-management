@@ -1,7 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NgClass } from '@angular/common';
-import { DatabaseService } from './services/database.service';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +13,6 @@ import { DatabaseService } from './services/database.service';
   }
 })
 export class AppComponent {
-  t = inject(DatabaseService);
-
   menuItems = [
     {
       icon: 'pi-users',
