@@ -13,7 +13,9 @@ export class DatabaseService {
     const SQLite = require('better-sqlite3');
     const fs = require('fs');
     const path = require('path');
+    // Path to electron binary inside node_modules
     const baseDir = __dirname.split('node_modules')[0];
+    // path to db: <project-folder>/db
     const dbPath = path.join(baseDir, './db');
 
     const dialect = new SqliteDialect({
