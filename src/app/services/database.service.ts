@@ -11,9 +11,14 @@ export class DatabaseService {
 
   constructor() {
     const SQLite = require('better-sqlite3');
+    const fs = require('fs');
+    const path = require('path');
+    const baseDir = __dirname.split('node_modules')[0];
+    const dbPath = path.join(baseDir, './db');
+
     const dialect = new SqliteDialect({
       // database: new SQLite(':memory:', { verbose: console.log })
-      database: new SQLite('/home/halil/projects/association-management/db')
+      database: new SQLite(dbPath)
     });
     this.kysely = new Kysely<Database>({ dialect });
   }
