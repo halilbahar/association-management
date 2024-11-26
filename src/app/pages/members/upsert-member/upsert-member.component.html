@@ -1,38 +1,39 @@
 <h1 class="text-3xl">Create Member</h1>
-<ng-container [formGroup]="form">
+<div [formGroup]="form" class="flex flex-col gap-3 w-full max-w-md">
+
   <p-floatlabel variant="in">
-    <input pInputText id="firstName" autocomplete="off" formControlName="firstName" />
+    <input [fluid]="true" autocomplete="off" formControlName="firstName" id="firstName" pInputText />
     <label for="firstName">First Name</label>
   </p-floatlabel>
 
   <p-floatlabel variant="in">
-    <input pInputText id="lastName" autocomplete="off" formControlName="lastName" />
+    <input [fluid]="true" autocomplete="off" formControlName="lastName" id="lastName" pInputText />
     <label for="lastName">Last Name</label>
   </p-floatlabel>
 
   <p-floatlabel variant="in">
-    <p-date-picker id="birthDate" formControlName="birthDate" />
+    <p-date-picker [fluid]="true" formControlName="birthDate" id="birthDate" />
     <label for="birthDate">Birth Date</label>
   </p-floatlabel>
 
   <p-floatlabel variant="in">
-    <p-date-picker id="joinedDate" formControlName="joinedDate" />
+    <p-date-picker [fluid]="true" formControlName="joinedDate" id="joinedDate" />
     <label for="joinedDate">Joined Date</label>
   </p-floatlabel>
 
   <p-floatlabel variant="in">
-    <p-select [options]="[{label: 'Female', value: 'female'}, {label: 'Male', value: 'male'}]" id="gender"
-              formControlName="gender" />
+    <p-select [fluid]="true"
+              [options]="[{label: 'Female', value: 'female'}, {label: 'Male', value: 'male'}]" formControlName="gender" inputId="gender" />
     <label for="gender">Gender</label>
   </p-floatlabel>
 
   <p-floatlabel variant="in">
-    <input pInputText id="nationality" autocomplete="off" formControlName="nationality" />
+    <input [fluid]="true" autocomplete="off" formControlName="nationality" id="nationality" pInputText />
     <label for="nationality">Nationality</label>
   </p-floatlabel>
 
   <p-floatlabel variant="in">
-    <textarea pTextarea id="notes" autocomplete="off" formControlName="notes"></textarea>
+    <textarea [fluid]="true" autocomplete="off" formControlName="notes" id="notes" pTextarea></textarea>
     <label for="notes">Notes</label>
   </p-floatlabel>
 
@@ -40,54 +41,54 @@
     @for (email of emails.controls; let i = $index; track i) {
       <ng-container [formGroup]="email">
         <p-floatlabel variant="in">
-          <input pInputText id="email-{{i}}" autocomplete="off" formControlName="email" />
+          <input pInputText id="email-{{i}}" autocomplete="off" formControlName="email" [fluid]="true" />
           <label for="email-{{i}}">Email</label>
         </p-floatlabel>
         <p-floatlabel variant="in">
-          <input pInputText id="description-{{i}}" autocomplete="off" formControlName="description" />
+          <input pInputText id="description-{{i}}" autocomplete="off" formControlName="description" [fluid]="true" />
           <label for="description-{{i}}">Email Description</label>
         </p-floatlabel>
       </ng-container>
     }
-    <button type="button" (click)="this.addEmail()">Add Email</button>
+    <button (click)="this.addEmail()" type="button">Add Email</button>
   </div>
 
   <div>
     @for (address of this.addresses.controls; let i = $index; track i) {
       <ng-container [formGroup]="address">
         <p-floatlabel variant="in">
-          <input pInputText id="street-{{i}}" autocomplete="off" formControlName="street" />
+          <input pInputText id="street-{{i}}" autocomplete="off" formControlName="street" [fluid]="true" />
           <label for="street-{{i}}">Street</label>
         </p-floatlabel>
         <p-floatlabel variant="in">
-          <input pInputText id="city-{{i}}" autocomplete="off" formControlName="city" />
+          <input pInputText id="city-{{i}}" autocomplete="off" formControlName="city" [fluid]="true" />
           <label for="city-{{i}}">City</label>
         </p-floatlabel>
         <p-floatlabel variant="in">
-          <input pInputText id="zip-{{i}}" autocomplete="off" formControlName="zip" />
+          <input pInputText id="zip-{{i}}" autocomplete="off" formControlName="zip" [fluid]="true" />
           <label for="zip-{{i}}">Zip Code</label>
         </p-floatlabel>
       </ng-container>
     }
-    <button type="button" (click)="this.addAddress()">Add Address</button>
+    <button (click)="this.addAddress()" type="button">Add Address</button>
   </div>
 
   <div>
     @for (phoneNumber of this.phoneNumbers.controls; let i = $index; track i) {
       <ng-container [formGroup]="phoneNumber">
         <p-floatlabel variant="in">
-          <input pInputText id="phoneNumber-{{i}}" autocomplete="off" formControlName="phoneNumber" />
+          <input pInputText id="phoneNumber-{{i}}" autocomplete="off" formControlName="phoneNumber" [fluid]="true" />
           <label for="phoneNumber-{{i}}">Phone Number</label>
         </p-floatlabel>
         <p-floatlabel variant="in">
-          <input pInputText id="description-{{i}}" autocomplete="off" formControlName="description" />
+          <input pInputText id="description-{{i}}" autocomplete="off" formControlName="description" [fluid]="true" />
           <label for="description-{{i}}">Phone Description</label>
         </p-floatlabel>
       </ng-container>
 
     }
-    <button type="button" (click)="this.addPhoneNumber()">Add Phone Number</button>
+    <button (click)="this.addPhoneNumber()" type="button">Add Phone Number</button>
   </div>
 
-  <p-button label="Submit" (click)="this.submit()" />
-</ng-container>
+  <p-button (click)="this.submit()" label="Submit" />
+</div>
