@@ -122,4 +122,16 @@ export class UpsertMemberComponent {
       phoneNumbers: stringifiedPhoneNumbers
     }).then(r => this.router.navigate(['members']));
   }
+
+  removeEmail(index: number): void {
+    this.emails.removeAt(index);
+  }
+
+  removeAdress(index: number): void {
+    this.addresses.removeAt(index);
+  }
+
+  removePhoneNumber(index: number): void {
+    this.phoneNumbers.removeAt(index);
+  }
 }

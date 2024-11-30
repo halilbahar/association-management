@@ -22,8 +22,8 @@
   </p-floatlabel>
 
   <p-floatlabel variant="in">
-    <p-select [fluid]="true"
-              [options]="[{label: 'Female', value: 'female'}, {label: 'Male', value: 'male'}]" formControlName="gender" inputId="gender" />
+    <p-select [fluid]="true" [options]="[{label: 'Female', value: 'female'}, {label: 'Male', value: 'male'}]"
+      formControlName="gender" inputId="gender" />
     <label for="gender">Gender</label>
   </p-floatlabel>
 
@@ -37,57 +37,71 @@
     <label for="notes">Notes</label>
   </p-floatlabel>
 
-  <div>
+  <div class="space-y-4">
     @for (email of emails.controls; let i = $index; track i) {
-      <ng-container [formGroup]="email">
-        <p-floatlabel variant="in">
-          <input pInputText id="email-{{i}}" autocomplete="off" formControlName="email" [fluid]="true" />
-          <label for="email-{{i}}">Email</label>
-        </p-floatlabel>
-        <p-floatlabel variant="in">
-          <input pInputText id="description-{{i}}" autocomplete="off" formControlName="description" [fluid]="true" />
-          <label for="description-{{i}}">Email Description</label>
-        </p-floatlabel>
-      </ng-container>
+    <div [formGroup]="email" class="flex flex-col gap-3"> <!-- use div instead ng-container -->
+      <p-floatlabel variant="in" class="w-full">
+        <input pInputText id="email-{{i}}" autocomplete="off" formControlName="email" [fluid]="true" />
+        <label for="email-{{i}}">Email</label>
+      </p-floatlabel>
+      <p-floatlabel variant="in" class="w-full">
+        <input pInputText id="description-{{i}}" autocomplete="off" formControlName="description" [fluid]="true" />
+        <label for="description-{{i}}">Email Description</label>
+      </p-floatlabel>
+
+      <div class="flex justify-end">
+        <p-button (click)="removeEmail(i)" severity="danger" size="small" icon="pi pi-trash" label="Delete">
+        </p-button>
+      </div>
+    </div>
     }
-    <button (click)="this.addEmail()" type="button">Add Email</button>
+    <button class="mt-2" (click)="this.addEmail()" type="button">Add Email</button>
   </div>
 
-  <div>
+  <div class="space-y-4"> 
     @for (address of this.addresses.controls; let i = $index; track i) {
-      <ng-container [formGroup]="address">
-        <p-floatlabel variant="in">
-          <input pInputText id="street-{{i}}" autocomplete="off" formControlName="street" [fluid]="true" />
-          <label for="street-{{i}}">Street</label>
-        </p-floatlabel>
-        <p-floatlabel variant="in">
-          <input pInputText id="city-{{i}}" autocomplete="off" formControlName="city" [fluid]="true" />
-          <label for="city-{{i}}">City</label>
-        </p-floatlabel>
-        <p-floatlabel variant="in">
-          <input pInputText id="zip-{{i}}" autocomplete="off" formControlName="zip" [fluid]="true" />
-          <label for="zip-{{i}}">Zip Code</label>
-        </p-floatlabel>
-      </ng-container>
+    <div [formGroup]="address" class="flex flex-col gap-3">
+      <p-floatlabel variant="in" class="w-full">
+        <input pInputText id="street-{{i}}" autocomplete="off" formControlName="street" [fluid]="true" />
+        <label for="street-{{i}}">Street</label>
+      </p-floatlabel>
+      <p-floatlabel variant="in" class="w-full">
+        <input pInputText id="city-{{i}}" autocomplete="off" formControlName="city" [fluid]="true" />
+        <label for="city-{{i}}">City</label>
+      </p-floatlabel>
+      <p-floatlabel variant="in" class="w-full">
+        <input pInputText id="zip-{{i}}" autocomplete="off" formControlName="zip" [fluid]="true" />
+        <label for="zip-{{i}}">Zip Code</label>
+      </p-floatlabel>
+
+      <div class="flex justify-end">
+        <p-button (click)="removeAdress(i)" severity="danger" size="small" icon="pi pi-trash" label="Delete">
+        </p-button>
+      </div>
+    </div>
     }
-    <button (click)="this.addAddress()" type="button">Add Address</button>
+    <button class="mt-2" (click)="this.addAddress()" type="button">Add Address</button>
   </div>
 
-  <div>
+  <div class="space-y-4">
     @for (phoneNumber of this.phoneNumbers.controls; let i = $index; track i) {
-      <ng-container [formGroup]="phoneNumber">
-        <p-floatlabel variant="in">
-          <input pInputText id="phoneNumber-{{i}}" autocomplete="off" formControlName="phoneNumber" [fluid]="true" />
-          <label for="phoneNumber-{{i}}">Phone Number</label>
-        </p-floatlabel>
-        <p-floatlabel variant="in">
-          <input pInputText id="description-{{i}}" autocomplete="off" formControlName="description" [fluid]="true" />
-          <label for="description-{{i}}">Phone Description</label>
-        </p-floatlabel>
-      </ng-container>
+    <div [formGroup]="phoneNumber" class="flex flex-col gap-3">
+      <p-floatlabel variant="in" class="w-full">
+        <input pInputText id="phoneNumber-{{i}}" autocomplete="off" formControlName="phoneNumber" [fluid]="true" />
+        <label for="phoneNumber-{{i}}">Phone Number</label>
+      </p-floatlabel>
+      <p-floatlabel variant="in" class="w-full">
+        <input pInputText id="description-{{i}}" autocomplete="off" formControlName="description" [fluid]="true" />
+        <label for="description-{{i}}">Phone Description</label>
+      </p-floatlabel>
 
+      <div class="flex justify-end">
+        <p-button (click)="removePhoneNumber(i)" severity="danger" size="small" icon="pi pi-trash" label="Delete">
+        </p-button>
+      </div>
+    </div>
     }
-    <button (click)="this.addPhoneNumber()" type="button">Add Phone Number</button>
+    <button class="mt-2" (click)="this.addPhoneNumber()" type="button">Add Phone Number</button>
   </div>
 
   <p-button (click)="this.submit()" label="Submit" />
