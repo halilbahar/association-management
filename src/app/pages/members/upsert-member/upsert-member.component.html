@@ -2,35 +2,71 @@
 <div [formGroup]="form" class="flex flex-col gap-3 w-full max-w-md">
 
   <p-floatlabel variant="in">
-    <input [fluid]="true" autocomplete="off" formControlName="firstName" id="firstName" pInputText />
+    <input [fluid]="true" autocomplete="off" formControlName="firstName" id="firstName" pInputText
+      [ngClass]="{'ng-invalid ng-dirty': form.get('firstName')?.invalid && form.get('firstName')?.touched}" />
     <label for="firstName">First Name</label>
   </p-floatlabel>
+  @if (form.get('firstName')?.invalid && form.get('firstName')?.touched) {
+  <small class="text-red-500">
+    First name is required
+  </small>
+  }
 
   <p-floatlabel variant="in">
-    <input [fluid]="true" autocomplete="off" formControlName="lastName" id="lastName" pInputText />
+    <input [fluid]="true" autocomplete="off" formControlName="lastName" id="lastName" pInputText
+      [ngClass]="{'ng-invalid ng-dirty': form.get('lastName')?.invalid && form.get('lastName')?.touched}" />
     <label for="lastName">Last Name</label>
   </p-floatlabel>
+  @if (form.get('lastName')?.invalid && form.get('lastName')?.touched) {
+  <small class="text-red-500">
+    Last name is required
+  </small>
+  }
 
   <p-floatlabel variant="in">
-    <p-date-picker [fluid]="true" formControlName="birthDate" id="birthDate" />
+    <p-date-picker [fluid]="true" formControlName="birthDate" id="birthDate"
+      [ngClass]="{'ng-invalid ng-dirty': form.get('birthDate')?.invalid && form.get('birthDate')?.touched}" />
     <label for="birthDate">Birth Date</label>
   </p-floatlabel>
+  @if (form.get('birthDate')?.invalid && form.get('birthDate')?.touched) {
+  <small class="text-red-500">
+    Birth date is required
+  </small>
+  }
 
   <p-floatlabel variant="in">
-    <p-date-picker [fluid]="true" formControlName="joinedDate" id="joinedDate" />
+    <p-date-picker [fluid]="true" formControlName="joinedDate" id="joinedDate"
+      [ngClass]="{'ng-invalid ng-dirty': form.get('joinedDate')?.invalid && form.get('joinedDate')?.touched}" />
     <label for="joinedDate">Joined Date</label>
   </p-floatlabel>
+  @if (form.get('joinedDate')?.invalid && form.get('joinedDate')?.touched) {
+  <small class="text-red-500">
+    Joined date is required
+  </small>
+  }
 
   <p-floatlabel variant="in">
     <p-select [fluid]="true" [options]="[{label: 'Female', value: 'female'}, {label: 'Male', value: 'male'}]"
-      formControlName="gender" inputId="gender" />
+      formControlName="gender" inputId="gender"
+      [ngClass]="{'ng-invalid ng-dirty': form.get('gender')?.invalid && form.get('gender')?.touched}" />
     <label for="gender">Gender</label>
   </p-floatlabel>
+  @if (form.get('gender')?.invalid && form.get('gender')?.touched) {
+  <small class="text-red-500">
+    Gender is required
+  </small>
+  }
 
   <p-floatlabel variant="in">
-    <input [fluid]="true" autocomplete="off" formControlName="nationality" id="nationality" pInputText />
+    <input [fluid]="true" autocomplete="off" formControlName="nationality" id="nationality" pInputText
+      [ngClass]="{'ng-invalid ng-dirty': form.get('nationality')?.invalid && form.get('nationality')?.touched}" />
     <label for="nationality">Nationality</label>
   </p-floatlabel>
+  @if (form.get('nationality')?.invalid && form.get('nationality')?.touched) {
+  <small class="text-red-500">
+    Nationality is required
+  </small>
+  }
 
   <p-floatlabel variant="in">
     <textarea [fluid]="true" autocomplete="off" formControlName="notes" id="notes" pTextarea></textarea>
@@ -41,13 +77,33 @@
     @for (email of emails.controls; let i = $index; track i) {
     <div [formGroup]="email" class="flex flex-col gap-3"> <!-- use div instead ng-container -->
       <p-floatlabel variant="in" class="w-full">
-        <input pInputText id="email-{{i}}" autocomplete="off" formControlName="email" [fluid]="true" />
+        <input pInputText id="email-{{i}}" autocomplete="off" formControlName="email" [fluid]="true"
+          [ngClass]="{'ng-invalid ng-dirty': email.get('email')?.invalid && email.get('email')?.touched}" />
         <label for="email-{{i}}">Email</label>
       </p-floatlabel>
+
+      @if (email.get('email')?.invalid && email.get('email')?.touched) {
+      <small class="text-red-500">
+        @if (email.get('email')?.hasError('required')) {
+        Email is required
+        }
+        @if (email.get('email')?.hasError('email')) {
+        Please enter a valid email address
+        }
+      </small>
+      }
+
       <p-floatlabel variant="in" class="w-full">
-        <input pInputText id="description-{{i}}" autocomplete="off" formControlName="description" [fluid]="true" />
+        <input pInputText id="description-{{i}}" autocomplete="off" formControlName="description" [fluid]="true"
+          [ngClass]="{'ng-invalid ng-dirty': email.get('description')?.invalid && email.get('description')?.touched}" />
         <label for="description-{{i}}">Email Description</label>
       </p-floatlabel>
+
+      @if (email.get('description')?.invalid && email.get('description')?.touched) {
+      <small class="text-red-500">
+        Description is required
+      </small>
+      }
 
       <div class="flex justify-end">
         <p-button (click)="removeEmail(i)" severity="danger" size="small" icon="pi pi-trash" label="Delete">
@@ -58,21 +114,49 @@
     <button class="mt-2" (click)="this.addEmail()" type="button">Add Email</button>
   </div>
 
-  <div class="space-y-4"> 
+  <div class="space-y-4">
     @for (address of this.addresses.controls; let i = $index; track i) {
     <div [formGroup]="address" class="flex flex-col gap-3">
       <p-floatlabel variant="in" class="w-full">
-        <input pInputText id="street-{{i}}" autocomplete="off" formControlName="street" [fluid]="true" />
+        <input pInputText id="street-{{i}}" autocomplete="off" formControlName="street" [fluid]="true"
+          [ngClass]="{'ng-invalid ng-dirty': address.get('street')?.invalid && address.get('street')?.touched}" />
         <label for="street-{{i}}">Street</label>
       </p-floatlabel>
+
+      @if (address.get('street')?.invalid && address.get('street')?.touched) {
+      <small class="text-red-500">
+        Street is required
+      </small>
+      }
+
       <p-floatlabel variant="in" class="w-full">
-        <input pInputText id="city-{{i}}" autocomplete="off" formControlName="city" [fluid]="true" />
+        <input pInputText id="city-{{i}}" autocomplete="off" formControlName="city" [fluid]="true"
+          [ngClass]="{'ng-invalid ng-dirty': address.get('city')?.invalid && address.get('city')?.touched}" />
         <label for="city-{{i}}">City</label>
       </p-floatlabel>
+
+      @if (address.get('city')?.invalid && address.get('city')?.touched) {
+      <small class="text-red-500">
+        City is required
+      </small>
+      }
+
       <p-floatlabel variant="in" class="w-full">
-        <input pInputText id="zip-{{i}}" autocomplete="off" formControlName="zip" [fluid]="true" />
+        <input pInputText id="zip-{{i}}" autocomplete="off" formControlName="zip" [fluid]="true"
+          [ngClass]="{'ng-invalid ng-dirty': address.get('zip')?.invalid && address.get('zip')?.touched}" />
         <label for="zip-{{i}}">Zip Code</label>
       </p-floatlabel>
+
+      @if (address.get('zip')?.invalid && address.get('zip')?.touched) {
+      <small class="text-red-500">
+        @if (address.get('zip')?.hasError('required')) {
+        Zip is required
+        }
+        @if (address.get('zip')?.hasError('pattern')) {
+        Please enter a valid zip code
+        }
+      </small>
+      }
 
       <div class="flex justify-end">
         <p-button (click)="removeAdress(i)" severity="danger" size="small" icon="pi pi-trash" label="Delete">
@@ -87,13 +171,33 @@
     @for (phoneNumber of this.phoneNumbers.controls; let i = $index; track i) {
     <div [formGroup]="phoneNumber" class="flex flex-col gap-3">
       <p-floatlabel variant="in" class="w-full">
-        <input pInputText id="phoneNumber-{{i}}" autocomplete="off" formControlName="phoneNumber" [fluid]="true" />
+        <input pInputText id="phoneNumber-{{i}}" autocomplete="off" formControlName="phoneNumber" [fluid]="true"
+          [ngClass]="{'ng-invalid ng-dirty': phoneNumber.get('phoneNumber')?.invalid && phoneNumber.get('phoneNumber')?.touched}" />
         <label for="phoneNumber-{{i}}">Phone Number</label>
       </p-floatlabel>
+
+      @if (phoneNumber.get('phoneNumber')?.invalid && phoneNumber.get('phoneNumber')?.touched) {
+      <small class="text-red-500">
+        @if (phoneNumber.get('phoneNumber')?.hasError('required')) {
+        Phone number is required
+        }
+        @if (phoneNumber.get('phoneNumber')?.hasError('pattern')) {
+        Please enter a valid phone number
+        }
+      </small>
+      }
+
       <p-floatlabel variant="in" class="w-full">
-        <input pInputText id="description-{{i}}" autocomplete="off" formControlName="description" [fluid]="true" />
+        <input pInputText id="description-{{i}}" autocomplete="off" formControlName="description" [fluid]="true"
+          [ngClass]="{'ng-invalid ng-dirty': phoneNumber.get('description')?.invalid && phoneNumber.get('description')?.touched}" />
         <label for="description-{{i}}">Phone Description</label>
       </p-floatlabel>
+
+      @if (phoneNumber.get('description')?.invalid && phoneNumber.get('description')?.touched) {
+      <small class="text-red-500">
+        Phone description is required
+      </small>
+      }
 
       <div class="flex justify-end">
         <p-button (click)="removePhoneNumber(i)" severity="danger" size="small" icon="pi pi-trash" label="Delete">
